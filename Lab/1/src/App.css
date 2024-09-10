@@ -1,0 +1,103 @@
+/* General styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.calculator {
+  width: 320px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Display styles */
+.display {
+  background-color: #222;
+  color: #fff;
+  padding: 20px;
+  font-size: 32px;
+  text-align: right;
+  border-bottom: 2px solid #444;
+}
+
+/* Keypad styles */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 20px;
+  background-color: #e9ecef;
+}
+
+.keypad button {
+  padding: 20px;
+  font-size: 18px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Button colors */
+.keypad button:active {
+  transform: scale(0.95);
+}
+
+.keypad button:nth-child(4n + 1) { /* Operator buttons */
+  background-color: #007bff;
+  color: white;
+}
+
+.keypad button:nth-child(4n + 2),
+.keypad button:nth-child(4n + 3),
+.keypad button:nth-child(4n + 4) {
+  background-color: #343a40;
+  color: white;
+}
+
+.keypad button:nth-last-child(1) { /* Equals button */
+  background-color: #28a745;
+  color: white;
+  grid-column: span 2;
+}
+
+.keypad button:nth-last-child(2) {
+  grid-column: span 2;
+}
+
+/* Number buttons */
+.keypad button:not(.keypad button:nth-last-child(-n + 4)):not(.keypad button:nth-child(4n + 1)) {
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+/* Hover and active states */
+.keypad button:hover {
+  background-color: #adb5bd;
+}
+
+.keypad button:active {
+  background-color: #6c757d;
+}
+@media (max-width: 360px) {
+  .calculator {
+    width: 100%;
+    margin: 20px;
+  }
+
+  .keypad button {
+    padding: 15px;
+    font-size: 16px;
+  }
+
+  .display {
+    font-size: 28px;
+  }
+}
