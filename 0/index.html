@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100vh;
+      margin: 0;
+      background-color: #e0f7fa;
+    }
+    h1 {
+      text-align: center;
+      color: #00796b;
+    }
+    #form-container, #data-container {
+      width: 90%;
+      max-width: 600px;
+      padding: 30px;
+      margin: 20px;
+      background: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      transition: box-shadow 0.3s ease;
+    }
+    #form-container:hover, #data-container:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    #student-form label {
+      font-weight: bold;
+      color: #00796b;
+      display: block;
+      margin-bottom: 5px;
+    }
+    #student-form input[type="text"],
+    #student-form input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    #student-form input[type="button"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #00796b;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    #student-form input[type="button"]:hover {
+      background-color: #004d40;
+    }
+    .student-box {
+      padding: 15px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background: #e0f2f1;
+    }
+    .student-box p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="form-container">
+    <h1>Student Form</h1>
+    <form id="student-form">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name">
+      <label for="rollno">Roll No:</label>
+      <input type="text" id="rollno" name="rollno">
+      <label for="address">Address:</label>
+      <input type="text" id="address" name="address">
+      <label for="cgpa">CGPA:</label>
+      <input type="number" id="cgpa" name="cgpa" step="0.01">
+      <input type="button" value="Submit" onclick="addStudent()">
+    </form>
+  </div>
+
+  <div id="data-container">
+    <h1>Student Data</h1>
+    <div id="demo"></div>
+  </div>
+
+  <script>
+    class Student {
+      constructor(name, rollno, address, cgpa) {
+        this.name = name;
+        this.rollno = rollno;
+        this.address = address;
+        this.cgpa = cgpa;
+      }
+    }
+
+    let students = [];
+
+    function addStudent() {
+      const name = document.getElementById("name").value;
+      const rollno = document.getElementById("rollno").value;
+      const address = document.getElementById("address").value;
+      const cgpa = document.getElementById("cgpa").value;
+
+      if(name && rollno && address && cgpa) {
+        const obj1 = new Student(name, rollno, address, cgpa);
+        students.push(obj1);
+
+        document.getElementById("demo").innerHTML = "";
+        students.forEach((obj1) => {
+          document.getElementById("demo").innerHTML += 
+            <div class="student-box">
+              <p><strong>Name:</strong> ${obj1.name}</p>
+              <p><strong>Roll No:</strong> ${obj1.rollno}</p>
+              <p><strong>Address:</strong> ${obj1.address}</p>
+              <p><strong>CGPA:</strong> ${obj1.cgpa}</p>
+            </div>;
+        });
+
+        document.getElementById("name").value = "";
+        document.getElementById("rollno").value = "";
+        document.getElementById("address").value = "";
+        document.getElementById("cgpa").value = "";
+      } else {
+        alert("Please fill all the fields.");
+      }
+    }
+  </script>
+</body>
+</html>
